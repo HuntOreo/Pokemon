@@ -1,0 +1,13 @@
+.stage {
+  display: grid;
+  grid-auto-rows: min-content;
+  height: fit-content;
+  justify-content: center;
+  margin: 0;
+}
+
+.focused {
+  width: 200px;
+  height: 200px;
+  background-color: aqua;
+}

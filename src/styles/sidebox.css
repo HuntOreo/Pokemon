@@ -1,0 +1,17 @@
+.container {
+  display: grid;
+  grid-template-columns: 100px;
+  grid-auto-rows: min-content;
+  border: 1px solid black;
+  grid-gap: 1px;
+  width: fit-content;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.sidePokemon {
+  width: 100px;
+  height: 100px;
+  background-color: blue;
+}
