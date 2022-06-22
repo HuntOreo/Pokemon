@@ -1,5 +1,5 @@
 import './styles/main.css';
-import Stage from './components/Stage';
+import Stage from './components/Stage/Stage'
 import SideBox from './components/SideBox';
 
 const App = () => {
