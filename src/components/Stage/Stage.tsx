@@ -1,16 +1,18 @@
 import axios from 'axios';
+import { fetchPokemon, rotate } from '../../methods/Methods';
+import { handleDragStart } from '../../methods/Drags';
 import { useState, useEffect } from 'react';
 import { Pokemon } from '../../interfaces/Pokemon';
-import { fetchPokemon, rotate } from '../../methods/Methods';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
 import Card from './Card';
 import '../../styles/stage.css';
 
 const Stage: React.FC = () => {
-  const [pokemon, setPokemon] = useState<Pokemon>();
-  const [amount, setAmount] = useState(1);
+  const [focusedPokemon, setFocusedPokemon] = useState<Pokemon>();
   const [focusedSprite, setFocusedSprite] = useState<string>();
+  const [amount, setAmount] = useState(1);
+  const [dragged, setDragged] = useState<Pokemon>();
 
   useEffect(() => {
     axios
@@ -18,29 +20,34 @@ const Stage: React.FC = () => {
       .then((response) => response.data)
       .then((data) => setAmount(data.count));
 
-    fetchPokemon(setPokemon, setFocusedSprite, amount);
+    fetchPokemon(setFocusedPokemon, setFocusedSprite, amount);
   }, []);
 
   return (
     <div className='stage'>
-      <div className='focused'>
+      <div className='focused' draggable='true'>
         <img
-          onClick={() => fetchPokemon(setPokemon, setFocusedSprite, amount)}
+          id='current'
+          draggable='true'
+          onDragStart={handleDragStart}
+          onClick={() =>
+            fetchPokemon(setFocusedPokemon, setFocusedSprite, amount)
+          }
           src={focusedSprite && focusedSprite}
           width='100%'
           alt='the pokemon being viewed.'
         />
         <FontAwesomeIcon
           onClick={() =>
-            pokemon &&
+            focusedPokemon &&
             focusedSprite &&
-            rotate(pokemon, focusedSprite, setFocusedSprite)
+            rotate(focusedPokemon, focusedSprite, setFocusedSprite)
           }
           className='rotate'
           icon={faRotateRight}
         />
       </div>
-      <Card pokemon={pokemon} />
+      <Card pokemon={focusedPokemon} />
     </div>
   );
 };
