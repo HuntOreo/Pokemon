@@ -4,12 +4,24 @@
   height: fit-content;
   justify-content: center;
   margin: 0;
+  padding: 10px;
 }
 
 .focused {
   width: 200px;
   height: 200px;
   background-color: aqua;
+  position: relative;
+  text-align: center;
+}
+
+.rotate {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  padding: 10px;
 }
 
 .card {
@@ -17,8 +29,8 @@
   grid-template-rows: repeat(2, fit-content);
 }
 
-.stats, .titles {
+.stats,
+.titles {
   display: flex;
   justify-content: space-between;
-  
 }
