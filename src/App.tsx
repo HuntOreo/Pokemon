@@ -23,6 +23,7 @@ const App: React.FC = () => {
 
   const sideBoxProps: SideBoxProps = {
     dragged: dragged,
+    setDragged: setDragged,
     teamSlots: teamSlots,
   };
 

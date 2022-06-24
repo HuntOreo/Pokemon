@@ -7,6 +7,7 @@ export interface StageProps {
 
 export interface SideBoxProps {
   dragged: Pokemon | undefined;
+  setDragged: Function;
   teamSlots: Element[] | undefined;
 }
 
