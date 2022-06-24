@@ -22,7 +22,7 @@ export const fetchPokemon = async (
       game: data.game_indices[0].version.name,
     };
     setPokemon(fetched);
-    setSprite(fetched.sprites[0]);
+    if (fetched.sprites) setSprite(fetched.sprites[0]);
   } catch (error) {
     fetchPokemon(setPokemon, setSprite, amount);
   }
@@ -33,9 +33,11 @@ export const rotate = (
   sprite: string,
   setSprite: Function
 ) => {
-  const current = pokemon.sprites.indexOf(sprite);
-  const next = pokemon.sprites[current + 1]
-    ? pokemon.sprites[current + 1]
-    : pokemon.sprites[0];
-  setSprite(next);
+  if (pokemon.sprites) {
+    const current = pokemon.sprites.indexOf(sprite);
+    const next = pokemon.sprites[current + 1]
+      ? pokemon.sprites[current + 1]
+      : pokemon.sprites[0];
+    setSprite(next);
+  }
 };

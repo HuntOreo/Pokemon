@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import React from 'react';
+import { useEffect, useState } from 'react';
 import Stage from './components/Stage/Stage';
 import SideBox from './components/SideBox';
 import { Pokemon } from './interfaces/Pokemon';
@@ -7,6 +8,13 @@ import './styles/main.css';
 
 const App: React.FC = () => {
   const [dragged, setDragged] = useState<Pokemon>();
+  const [teamSlots, setTeamSlots] = useState<Element[]>();
+
+  useEffect(() => {
+    const elementCollection = document.getElementsByClassName('teamSlot');
+    const slots = Array.from(elementCollection);
+    setTeamSlots(slots);
+  }, []);
 
   const stageProps: StageProps = {
     dragged: dragged,
@@ -15,13 +23,16 @@ const App: React.FC = () => {
 
   const sideBoxProps: SideBoxProps = {
     dragged: dragged,
+    teamSlots: teamSlots,
   };
 
   return (
-    <div className='container-main'>
-      <Stage {...stageProps} />
-      <SideBox {...sideBoxProps} />
-    </div>
+    <React.StrictMode>
+      <div className='container-main'>
+        <Stage {...stageProps} />
+        <SideBox {...sideBoxProps} />
+      </div>
+    </React.StrictMode>
   );
 };
 
