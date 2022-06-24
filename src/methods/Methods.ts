@@ -28,11 +28,41 @@ export const fetchPokemon = async (
   }
 };
 
+export const removeFromTeam = (
+  targeted: Pokemon,
+  team: Pokemon[],
+  setTeam: Function
+): void => {
+  let newTeam = [...team];
+  const targetedIndex = team.indexOf(targeted);
+  newTeam[targetedIndex] = {
+    name: '',
+    id: 0,
+    slot: targetedIndex + 1,
+  };
+
+  const temp: Pokemon[] = newTeam.filter((member) => member.name !== '');
+  for (let i = 0; i < newTeam.length; i++) {
+    if (temp[i]) {
+      temp[i].slot = i + 1;
+      newTeam[i] = temp[i];
+    } else {
+      newTeam[i] = {
+        name: '',
+        id: 0,
+        slot: i + 1,
+      };
+    }
+  }
+
+  setTeam(newTeam);
+};
+
 export const rotate = (
   pokemon: Pokemon,
   sprite: string,
   setSprite: Function
-) => {
+): void => {
   if (pokemon.sprites) {
     const current = pokemon.sprites.indexOf(sprite);
     const next = pokemon.sprites[current + 1]

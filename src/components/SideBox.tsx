@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Pokemon } from '../interfaces/Pokemon';
 import { SideBoxProps } from '../interfaces/Props';
 import { handleDragOver, handleDrop, handleDragStart } from '../methods/Drags';
+import { removeFromTeam } from '../methods/Methods';
 import '../styles/sidebox.css';
 
 const SideBox: React.FC<SideBoxProps> = (props) => {
@@ -66,6 +67,7 @@ const SideBox: React.FC<SideBoxProps> = (props) => {
           >
             {slot.sprites && (
               <img
+                onDoubleClick={() => removeFromTeam(slot, team, setTeam)}
                 draggable='true'
                 src={slot.sprites[0]}
                 width='100%'

@@ -14,7 +14,7 @@ const Focused: React.FC<FocusedProps> = (props) => {
           props.focusedPokemon &&
           handleDragStart(e, props.focusedPokemon, props.setDragged)
         }
-        onClick={() =>
+        onDoubleClick={() =>
           fetchPokemon(
             props.setFocusedPokemon,
             props.setFocusedSprite,
