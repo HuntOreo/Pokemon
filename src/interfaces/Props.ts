@@ -24,3 +24,7 @@ export interface FocusedProps {
   setDragged: Function;
   amount: number;
 }
+
+export interface TypesProps {
+  types: string[] | undefined;
+}

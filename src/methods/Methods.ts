@@ -1,4 +1,5 @@
 import axios from 'axios';
+import React from 'react';
 import { Pokemon } from '../interfaces/Pokemon';
 
 // pull a random pokemon and set it as a state.
@@ -24,7 +25,7 @@ export const fetchPokemon = async (
         },
         weight: data.weight,
         game: data.game_indices[0].version.name,
-        type: [''],
+        type: getTypes(data.types),
       },
     };
     setPokemon(fetched);
@@ -110,4 +111,12 @@ export const swapSideBoxPokemon = (
     setTeam(team);
     setSwappingDiv && setSwappingDiv(undefined);
   }
+};
+
+const getTypes = (obj: any): string[] => {
+  const types: string[] = obj.map((item: any) => {
+    return item.type.name;
+  });
+
+  return types;
 };

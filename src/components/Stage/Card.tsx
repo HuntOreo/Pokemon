@@ -1,4 +1,5 @@
 import { CardProps } from '../../interfaces/Props';
+import Types from './Types';
 
 const Card: React.FC<CardProps> = ({ pokemon }) => {
   return (
@@ -11,8 +12,8 @@ const Card: React.FC<CardProps> = ({ pokemon }) => {
         <p>weight: {pokemon?.specifics?.weight && pokemon.specifics.weight}</p>
         <p>game: {pokemon?.specifics?.game && pokemon.specifics.game}</p>
       </div>
+      <Types types={pokemon?.specifics?.type} />
     </section>
   );
 };
-
 export default Card;
