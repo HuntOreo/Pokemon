@@ -58,7 +58,6 @@ const SideBox: React.FC<SideBoxProps> = (props) => {
                 team,
                 setTeam,
                 props.teamSlots,
-
                 swappingDiv,
                 setSwappingDiv,
                 swappingPokemon
@@ -68,6 +67,10 @@ const SideBox: React.FC<SideBoxProps> = (props) => {
           >
             {slot?.specifics?.sprites && (
               <img
+                onClick={() => {
+                  props.setFocusedPokemon(slot);
+                  props.setFocusedSprite(slot.specifics?.sprites.front);
+                }}
                 onDoubleClick={() => removeFromTeam(slot, team, setTeam)}
                 draggable='true'
                 src={slot.specifics.sprites.front}
@@ -77,7 +80,6 @@ const SideBox: React.FC<SideBoxProps> = (props) => {
                   handleDragStart(
                     e,
                     slot,
-
                     props.setDragged,
                     setSwappingDiv,
                     setSwappingPokemon

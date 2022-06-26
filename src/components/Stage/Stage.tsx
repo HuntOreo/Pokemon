@@ -1,39 +1,25 @@
-import axios from 'axios';
-import { useState, useEffect } from 'react';
-import { Pokemon } from '../../interfaces/Pokemon';
+import { useEffect } from 'react';
 import { CardProps, FocusedProps, StageProps } from '../../interfaces/Props';
-import { fetchPokemon } from '../../methods/Methods';
 import Card from './Card';
 import Focused from './Focused';
 import '../../styles/stage.css';
 
-const Stage: React.FC<StageProps> = ({ dragged, setDragged }) => {
-  const [focusedPokemon, setFocusedPokemon] = useState<Pokemon>();
-  const [focusedSprite, setFocusedSprite] = useState<string>();
-  const [amount, setAmount] = useState(1);
-
+const Stage: React.FC<StageProps> = (props) => {
   const focusedProps: FocusedProps = {
-    focusedPokemon: focusedPokemon,
-    setFocusedPokemon: setFocusedPokemon,
-    setFocusedSprite: setFocusedSprite,
-    focusedSprite: focusedSprite,
-    setDragged: setDragged,
-    dragged: dragged,
-    amount: amount,
+    focusedPokemon: props.focusedPokemon,
+    setFocusedPokemon: props.setFocusedPokemon,
+    setFocusedSprite: props.setFocusedSprite,
+    focusedSprite: props.focusedSprite,
+    setDragged: props.setDragged,
+    dragged: props.dragged,
+    amount: props.amount,
   };
 
   const cardProps: CardProps = {
-    pokemon: focusedPokemon,
+    pokemon: props.focusedPokemon,
   };
 
-  useEffect(() => {
-    axios
-      .get(`https://pokeapi.co/api/v2/pokemon/`)
-      .then((response) => response.data)
-      .then((data) => setAmount(data.count));
-
-    fetchPokemon(setFocusedPokemon, setFocusedSprite, amount);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className='stage'>

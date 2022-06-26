@@ -40,7 +40,7 @@ const Types: React.FC<TypesProps> = (props) => {
       case 'water':
         return require('../../images/Pokemon_Type_Icon_Water.png');
       default:
-        return '';
+        return 'missing type';
     }
   };
 
