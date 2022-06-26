@@ -17,12 +17,18 @@ export const fetchPokemon = async (
     const fetched: Pokemon = {
       name: data.name,
       id: data.id,
-      sprites: [data.sprites.front_default, data.sprites.back_default],
-      weight: data.weight,
-      game: data.game_indices[0].version.name,
+      specifics: {
+        sprites: {
+          front: data.sprites.front_default,
+          back: data.sprites.back_default,
+        },
+        weight: data.weight,
+        game: data.game_indices[0].version.name,
+        type: [''],
+      },
     };
     setPokemon(fetched);
-    if (fetched.sprites) setSprite(fetched.sprites[0]);
+    if (fetched.specifics?.sprites) setSprite(fetched.specifics.sprites.front);
   } catch (error) {
     fetchPokemon(setPokemon, setSprite, amount);
   }
@@ -60,14 +66,48 @@ export const removeFromTeam = (
 
 export const rotate = (
   pokemon: Pokemon,
-  sprite: string,
+  currentSide: string,
   setSprite: Function
 ): void => {
-  if (pokemon.sprites) {
-    const current = pokemon.sprites.indexOf(sprite);
-    const next = pokemon.sprites[current + 1]
-      ? pokemon.sprites[current + 1]
-      : pokemon.sprites[0];
-    setSprite(next);
+  if (pokemon.specifics?.sprites) {
+    if (pokemon.specifics.sprites.front === currentSide) {
+      setSprite(pokemon.specifics.sprites.back);
+    } else {
+      setSprite(pokemon.specifics.sprites.front);
+    }
+  }
+};
+
+export const swapSideBoxPokemon = (
+  parent: HTMLElement,
+  team: Pokemon[],
+  setTeam: Function,
+  teamSlots: Element[],
+  swapDiv?: HTMLElement,
+  setSwappingDiv?: Function,
+  swapPokemon?: Pokemon
+): void => {
+  if (swapDiv && swapPokemon && parent) {
+    const divAIndex = teamSlots.indexOf(swapDiv);
+    const divBIndex = teamSlots.indexOf(parent);
+    const pokeA = swapPokemon;
+    const pokeB = team[divBIndex];
+
+    if (!pokeB) {
+      setSwappingDiv && setSwappingDiv(undefined);
+      return;
+    }
+
+    const slotA = pokeA.slot;
+    const slotB = pokeB.slot;
+
+    pokeA.slot = slotB;
+    pokeB.slot = slotA;
+
+    team[divAIndex] = pokeB;
+    team[divBIndex] = pokeA;
+
+    setTeam(team);
+    setSwappingDiv && setSwappingDiv(undefined);
   }
 };

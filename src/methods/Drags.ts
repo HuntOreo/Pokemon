@@ -1,5 +1,6 @@
 import React from 'react';
 import { Pokemon } from '../interfaces/Pokemon';
+import { swapSideBoxPokemon } from './Methods';
 
 export const handleDragStart = (
   event: React.DragEvent<HTMLImageElement | HTMLDivElement>,
@@ -37,38 +38,36 @@ export const handleDrop = (
   event.preventDefault();
   const target = event.target as HTMLElement;
   const parent = target.parentElement;
+  const newTeam = [...team];
 
-  if (swapDiv && swapPokemon && parent) {
-    const divAIndex = teamSlots.indexOf(swapDiv);
-    const divBIndex = teamSlots.indexOf(parent);
-    const newTeam = [...team];
-    const pokeA = swapPokemon;
-    const pokeB = newTeam[divBIndex];
+  if (parent) {
+    const currentIndex = teamSlots.indexOf(parent);
+    const currentPokemon = newTeam[currentIndex];
 
-    if (!pokeB) {
-      setSwappingDiv && setSwappingDiv(undefined);
-      return;
+    if (swapDiv && swapPokemon) {
+      swapSideBoxPokemon(
+        parent,
+        newTeam,
+        setTeam,
+        teamSlots,
+        swapDiv,
+        setSwappingDiv,
+        swapPokemon
+      );
+    } else if (currentPokemon && currentPokemon.name !== '') {
+      const replacement: Pokemon = { ...dragged };
+      replacement.slot = currentIndex + 1;
+      newTeam[currentIndex] = replacement;
+      setTeam(newTeam);
+    } else {
+      const index = teamSlots.indexOf(target);
+      const placedPokemon: Pokemon = { ...dragged };
+
+      const newTeam = [...team];
+      placedPokemon.slot = index + 1;
+
+      newTeam[index] = placedPokemon;
+      setTeam(newTeam);
     }
-
-    const slotA = pokeA.slot;
-    const slotB = pokeB.slot;
-
-    pokeA.slot = slotB;
-    pokeB.slot = slotA;
-
-    newTeam[divAIndex] = pokeB;
-    newTeam[divBIndex] = pokeA;
-
-    setTeam(newTeam);
-    setSwappingDiv && setSwappingDiv(undefined);
-  } else {
-    const index = teamSlots.indexOf(target);
-    const placedPokemon: Pokemon = { ...dragged };
-
-    const newTeam = [...team];
-    placedPokemon.slot = index + 1;
-
-    newTeam[index] = placedPokemon;
-    setTeam(newTeam);
   }
 };
