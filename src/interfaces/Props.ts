@@ -16,6 +16,8 @@ export interface SideBoxProps {
   teamSlots: Element[] | undefined;
   setFocusedPokemon: Function;
   setFocusedSprite: Function;
+  team: Pokemon[] | undefined;
+  setTeam: Function;
 }
 
 export interface CardProps {
@@ -34,4 +36,9 @@ export interface FocusedProps {
 
 export interface TypesProps {
   types: string[] | undefined;
+}
+
+export interface BattleProps {
+  team: Pokemon[];
+  opponent: Pokemon | undefined;
 }

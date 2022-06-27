@@ -1,10 +1,12 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Stage from './components/Stage/Stage';
+import Battle from './components/battle/Battle';
+import Stage from './components/stage/Stage';
 import SideBox from './components/SideBox';
 import { Pokemon } from './interfaces/Pokemon';
-import { fetchPokemon } from './methods/Methods';
-import { SideBoxProps, StageProps } from './interfaces/Props';
+import { fetchPokemon } from './methods/general';
+import { SideBoxProps, StageProps, BattleProps } from './interfaces/Props';
+import { Team } from './interfaces/misc/Team';
 import './styles/main.css';
 
 const App: React.FC = () => {
@@ -13,6 +15,7 @@ const App: React.FC = () => {
   const [amount, setAmount] = useState(1);
   const [dragged, setDragged] = useState<Pokemon>();
   const [teamSlots, setTeamSlots] = useState<Element[]>();
+  const [team, setTeam] = useState<Pokemon[]>(Team);
 
   useEffect(() => {
     const elementCollection = document.getElementsByClassName('teamSlot');
@@ -26,6 +29,11 @@ const App: React.FC = () => {
 
     fetchPokemon(setFocusedPokemon, setFocusedSprite, amount);
   }, []);
+
+  const battleProps: BattleProps = {
+    team: team,
+    opponent: focusedPokemon,
+  };
 
   const stageProps: StageProps = {
     amount: amount,
@@ -43,11 +51,14 @@ const App: React.FC = () => {
     teamSlots: teamSlots,
     setFocusedPokemon: setFocusedPokemon,
     setFocusedSprite: setFocusedSprite,
+    team: team,
+    setTeam: setTeam,
   };
 
   return (
     <React.StrictMode>
       <div className='container-main'>
+        <Battle {...battleProps} />
         <Stage {...stageProps} />
         <SideBox {...sideBoxProps} />
       </div>

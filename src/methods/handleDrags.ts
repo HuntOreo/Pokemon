@@ -1,6 +1,6 @@
 import React from 'react';
 import { Pokemon } from '../interfaces/Pokemon';
-import { swapSideBoxPokemon } from './Methods';
+import { swapSideBoxPokemon } from './general';
 
 export const handleDragStart = (
   event: React.DragEvent<HTMLImageElement | HTMLDivElement>,

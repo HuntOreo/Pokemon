@@ -1,0 +1,11 @@
+.battleButton {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.showBattleButton {
+  visibility: visible;
+  width: fit-content;
+  height: fit-content;
+}

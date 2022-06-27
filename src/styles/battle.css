@@ -1,0 +1,36 @@
+.battleScreen {
+  background-color: brown;
+  width: 50%;
+  height: 20vmax;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  justify-items: center;
+  position: relative;
+}
+
+.battleScreen .UX {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+}
+
+.showBattle {
+  visibility: visible;
+}
+
+.hideBattle {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+#friendly {
+  grid-row: 2;
+}
+
+#baddy {
+  grid-column: 2;
+  grid-row: 1;
+}

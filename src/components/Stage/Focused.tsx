@@ -1,8 +1,8 @@
 import { FocusedProps } from '../../interfaces/Props';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faRotateRight } from '@fortawesome/free-solid-svg-icons';
-import { handleDragStart } from '../../methods/Drags';
-import { fetchPokemon, rotate } from '../../methods/Methods';
+import { handleDragStart } from '../../methods/handleDrags';
+import { fetchPokemon, rotate } from '../../methods/general';
 
 const Focused: React.FC<FocusedProps> = (props) => {
   return (
