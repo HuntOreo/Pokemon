@@ -1,6 +1,5 @@
 import axios from 'axios';
-import React from 'react';
-import { Pokemon } from '../interfaces/Pokemon';
+import { Pokemon, PokeStats } from '../interfaces/Pokemon';
 
 // pull a random pokemon and set it as a state.
 export const fetchPokemon = async (
@@ -14,6 +13,14 @@ export const fetchPokemon = async (
     const { data } = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/${id}/`
     );
+    const stats: Array<any> = data.stats;
+
+    const pokeStats: PokeStats[] = stats.map((item) => {
+      return {
+        name: item.stat.name,
+        baseStat: item.base_stat,
+      };
+    });
 
     const fetched: Pokemon = {
       name: data.name,
@@ -26,8 +33,10 @@ export const fetchPokemon = async (
         weight: data.weight,
         game: data.game_indices[0].version.name,
         type: getTypes(data.types),
+        stats: pokeStats,
       },
     };
+
     setPokemon(fetched);
     if (fetched.specifics?.sprites) setSprite(fetched.specifics.sprites.front);
   } catch (error) {

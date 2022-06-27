@@ -6,6 +6,7 @@ export interface PokemonSkeleton {
   weight: number;
   game: string;
   type: string[];
+  stats: PokeStats[];
 }
 
 export interface Pokemon {
@@ -13,4 +14,9 @@ export interface Pokemon {
   id: number;
   slot?: number;
   specifics?: PokemonSkeleton;
+}
+
+export interface PokeStats {
+  name: string;
+  baseStat: number;
 }
