@@ -16,16 +16,6 @@
   bottom: 0;
 }
 
-.showBattle {
-  visibility: visible;
-}
-
-.hideBattle {
-  visibility: hidden;
-  width: 0;
-  height: 0;
-}
-
 #friendly {
   grid-row: 2;
 }

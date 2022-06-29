@@ -1,3 +1,14 @@
+export interface PokeStats {
+  name: string;
+  baseStat: number;
+}
+
+export interface MoveSkeleton {
+  name: string;
+  url: string;
+  level: number;
+}
+
 export interface PokemonSkeleton {
   sprites: {
     front: string;
@@ -7,6 +18,7 @@ export interface PokemonSkeleton {
   game: string;
   type: string[];
   stats: PokeStats[];
+  moves: MoveSkeleton[];
 }
 
 export interface Pokemon {
@@ -14,9 +26,4 @@ export interface Pokemon {
   id: number;
   slot?: number;
   specifics?: PokemonSkeleton;
-}
-
-export interface PokeStats {
-  name: string;
-  baseStat: number;
 }

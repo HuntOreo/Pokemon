@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Pokemon, PokeStats } from '../interfaces/Pokemon';
+import { MoveSkeleton, Pokemon, PokeStats } from '../interfaces/Pokemon';
 
 // pull a random pokemon and set it as a state.
 export const fetchPokemon = async (
@@ -22,6 +22,8 @@ export const fetchPokemon = async (
       };
     });
 
+    getMoves(data.moves);
+
     const fetched: Pokemon = {
       name: data.name,
       id: data.id,
@@ -34,6 +36,7 @@ export const fetchPokemon = async (
         game: data.game_indices[0].version.name,
         type: getTypes(data.types),
         stats: pokeStats,
+        moves: getMoves(data.moves),
       },
     };
 
@@ -128,4 +131,17 @@ const getTypes = (obj: any): string[] => {
   });
 
   return types;
+};
+
+const getMoves = (moves: any[]): MoveSkeleton[] => {
+  const result: MoveSkeleton[] = moves.map((item) => {
+    console.log(item);
+    return {
+      name: item.move.name,
+      url: item.move.url,
+      level: item.version_group_details[0].level_learned_at,
+    };
+  });
+
+  return result;
 };

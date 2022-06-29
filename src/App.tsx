@@ -1,12 +1,16 @@
 import axios from 'axios';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import React, { useEffect, useState } from 'react';
+
 import Battle from './components/battle/Battle';
 import Stage from './components/stage/Stage';
-import SideBox from './components/SideBox';
+import SideBox from './components/SideBox/SideBox';
+
 import { Pokemon } from './interfaces/Pokemon';
-import { fetchPokemon } from './methods/general';
 import { SideBoxProps, StageProps, BattleProps } from './interfaces/Props';
 import { Team } from './interfaces/misc/Team';
+
+import { fetchPokemon } from './methods/general';
 import './styles/main.css';
 
 const App: React.FC = () => {
@@ -58,8 +62,12 @@ const App: React.FC = () => {
   return (
     <React.StrictMode>
       <div className='container-main'>
-        <Battle {...battleProps} />
-        <Stage {...stageProps} />
+        <BrowserRouter>
+          <Routes>
+            <Route path='/' element={<Stage {...stageProps} />} />
+            <Route path='/battle' element={<Battle {...battleProps} />} />
+          </Routes>
+        </BrowserRouter>
         <SideBox {...sideBoxProps} />
       </div>
     </React.StrictMode>

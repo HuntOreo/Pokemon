@@ -1,13 +1,13 @@
 import { useState } from 'react';
-import { Pokemon } from '../interfaces/Pokemon';
-import { SideBoxProps } from '../interfaces/Props';
+import { Pokemon } from '../../interfaces/Pokemon';
+import { SideBoxProps } from '../../interfaces/Props';
 import {
   handleDragOver,
   handleDrop,
   handleDragStart,
-} from '../methods/handleDrags';
-import { removeFromTeam } from '../methods/general';
-import '../styles/sidebox.css';
+} from '../../methods/handleDrags';
+import { removeFromTeam } from '../../methods/general';
+import '../../styles/sidebox.css';
 
 const SideBox: React.FC<SideBoxProps> = (props) => {
   const [swappingDiv, setSwappingDiv] = useState<HTMLElement | undefined>();
