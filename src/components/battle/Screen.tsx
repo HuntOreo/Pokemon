@@ -1,5 +1,6 @@
 import { BattleProps } from '../../interfaces/Props';
 import Stats from './Stats';
+import '../../styles/battle/screen.css';
 
 const Screen: React.FC<BattleProps> = (props) => {
   return (

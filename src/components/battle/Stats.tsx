@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { PokeBattleStatsProps } from '../../interfaces/Props';
-import '../../styles/battleUX.css';
+import '../../styles/battle/stats.css';
 
 const Stats: React.FC<PokeBattleStatsProps> = ({ pokemon }) => {
   const [healthStatus, setHealthStatus] = useState({
