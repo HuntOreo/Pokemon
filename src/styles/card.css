@@ -1,10 +1,10 @@
-.battleButton {
+.hideStage {
   visibility: hidden;
   width: 0;
   height: 0;
 }
 
-.showBattleButton {
+.showStage {
   visibility: visible;
   width: fit-content;
   height: fit-content;

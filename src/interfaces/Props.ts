@@ -42,3 +42,7 @@ export interface BattleProps {
   team: Pokemon[];
   opponent: Pokemon | undefined;
 }
+
+export interface PokeBattleStatsProps {
+  pokemon: Pokemon | undefined;
+}

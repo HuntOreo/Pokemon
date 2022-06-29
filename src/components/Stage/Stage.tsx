@@ -22,7 +22,7 @@ const Stage: React.FC<StageProps> = (props) => {
   useEffect(() => {}, []);
 
   return (
-    <div className='stage'>
+    <div id='stage' className='showStage'>
       <Focused {...focusedProps} />
       <Card {...cardProps} />
     </div>

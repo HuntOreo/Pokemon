@@ -1,9 +1,9 @@
 export const handleRun = () => {
   const target = document.querySelectorAll('.showBattle');
-  const battleButton = document.querySelector('.battleButton');
+  const stage = document.getElementById('stage');
 
-  if (battleButton) {
-    battleButton.className += ' showBattleButton';
+  if (stage) {
+    stage.className = 'showStage';
   }
 
   const list = Array.from(target);
@@ -17,9 +17,10 @@ export const handleRun = () => {
 export const handleStartBattle = (
   event: React.MouseEvent<HTMLButtonElement, MouseEvent>
 ) => {
-  const target = event.target as Element;
-
-  target.classList.remove('showBattleButton');
+  const target = document.getElementById('stage');
+  if (target) {
+    target.className = 'hideStage';
+  }
 
   const battleElements = document.querySelectorAll('.hideBattle');
   const list = Array.from(battleElements);

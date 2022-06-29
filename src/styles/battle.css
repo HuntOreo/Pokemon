@@ -34,3 +34,11 @@
   grid-column: 2;
   grid-row: 1;
 }
+
+.pokeBattleSlot {
+  position: relative;
+}
+
+.pokeBattleSlot img {
+  margin: auto;
+}

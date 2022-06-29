@@ -1,10 +1,11 @@
-.stage {
+#stage {
   display: grid;
   grid-auto-rows: min-content;
   height: fit-content;
   justify-content: center;
   margin: 0;
   padding: 10px;
+  justify-self: center;
 }
 
 .focused {
@@ -33,4 +34,16 @@
 .titles {
   display: flex;
   justify-content: space-between;
+}
+
+.hideStage {
+  visibility: hidden;
+  width: 0;
+  height: 0;
+}
+
+.showStage {
+  visibility: visible;
+  width: fit-content;
+  height: fit-content;
 }

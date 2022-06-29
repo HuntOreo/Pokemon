@@ -1,0 +1,19 @@
+.battleUX {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+}
+
+.healthBar {
+  width: 100%;
+  height: 8px;
+  background-color: white;
+  border: 3px solid black;
+  border-radius: 5px;
+}
+
+.healthFiller {
+  background-color: green;
+  height: 8px;
+  position: absolute;
+}
