@@ -1,3 +1,5 @@
+import { AvailableMoves } from './Moves';
+
 export interface PokeStats {
   name: string;
   baseStat: number;
@@ -18,7 +20,8 @@ export interface PokemonSkeleton {
   game: string;
   type: string[];
   stats: PokeStats[];
-  moves: MoveSkeleton[];
+  availableMoves: AvailableMoves[];
+  movesList: MoveSkeleton[];
 }
 
 export interface Pokemon {

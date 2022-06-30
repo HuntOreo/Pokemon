@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { AvailableMoves } from '../interfaces/Moves';
 import { MoveSkeleton, Pokemon, PokeStats } from '../interfaces/Pokemon';
 
 // pull a random pokemon and set it as a state.
@@ -13,6 +14,10 @@ export const fetchPokemon = async (
     const { data } = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/${id}/`
     );
+
+    const pound = await axios.get('https://pokeapi.co/api/v2/move/1');
+    const availableMoves = setAvailableMoves(pound.data);
+
     const stats: Array<any> = data.stats;
 
     const pokeStats: PokeStats[] = stats.map((item) => {
@@ -36,13 +41,16 @@ export const fetchPokemon = async (
         game: data.game_indices[0].version.name,
         type: getTypes(data.types),
         stats: pokeStats,
-        moves: getMoves(data.moves),
+        availableMoves: [availableMoves],
+        movesList: getMoves(data.moves),
       },
     };
 
+    console.log(fetched);
     setPokemon(fetched);
     if (fetched.specifics?.sprites) setSprite(fetched.specifics.sprites.front);
   } catch (error) {
+    console.log(error);
     fetchPokemon(setPokemon, setSprite, amount);
   }
 };
@@ -135,7 +143,6 @@ const getTypes = (obj: any): string[] => {
 
 const getMoves = (moves: any[]): MoveSkeleton[] => {
   const result: MoveSkeleton[] = moves.map((item) => {
-    console.log(item);
     return {
       name: item.move.name,
       url: item.move.url,
@@ -144,4 +151,30 @@ const getMoves = (moves: any[]): MoveSkeleton[] => {
   });
 
   return result;
+};
+
+const setAvailableMoves = (move: any): AvailableMoves => {
+  const moveList: AvailableMoves = {
+    accuracy: move.accuracy,
+    ailment: move.meta.ailment && {
+      name: move.meta.ailment.name,
+      chance: move.meta.ailment_chance,
+      url: move.meta.ailment.url,
+    },
+    crit_chance: move.meta.crit_rate,
+    damage_class: {
+      name: move.damage_class.name,
+      url: move.damage_class.url,
+    },
+    effect_chance: move.effect_chance,
+    flinch_chance: move.meta.flinch_chance,
+    healing: move.meta.healing,
+    id: move.id,
+    name: move.name,
+    power: move.power,
+    pp: move.pp,
+    type: move.type.name,
+  };
+
+  return moveList;
 };
