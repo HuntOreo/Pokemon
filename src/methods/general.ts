@@ -38,6 +38,12 @@ export const fetchPokemon = async (
           back: data.sprites.back_default,
         },
         weight: data.weight,
+        xp: {
+          currentLevel: 1,
+          currentXp: 20,
+          needed: 50,
+        },
+        currentHealth: pokeStats[0].baseStat - 10,
         game: data.game_indices[0].version.name,
         type: getTypes(data.types),
         stats: pokeStats,

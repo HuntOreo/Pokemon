@@ -16,6 +16,12 @@ export interface PokemonSkeleton {
     front: string;
     back: string;
   };
+  xp: {
+    currentLevel: number;
+    currentXp: number;
+    needed: number;
+  };
+  currentHealth: number;
   weight: number;
   game: string;
   type: string[];

@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 
 import Battle from './components/battle/Battle';
 import Stage from './components/stage/Stage';
-import SideBox from './components/SideBox/SideBox';
+import SideBox from './components/sideBox/SideBox';
 
 import { Pokemon } from './interfaces/Pokemon';
 import { SideBoxProps, StageProps, BattleProps } from './interfaces/Props';

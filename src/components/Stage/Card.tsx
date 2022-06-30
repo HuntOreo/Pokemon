@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { CardProps } from '../../interfaces/Props';
 import Types from './Types';
+import '../../styles/card.css';
 
 const Card: React.FC<CardProps> = ({ pokemon }) => {
   return (

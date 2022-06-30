@@ -4,41 +4,41 @@ const Types: React.FC<TypesProps> = (props) => {
   const setTypeIcon = (type: string): string => {
     switch (type) {
       case 'bug':
-        return require('../../images/Pokemon_Type_Icon_Bug.png');
+        return require('../../images/types/Pokemon_Type_Icon_Bug.png');
       case 'dark':
-        return require('../../images/Pokemon_Type_Icon_Dark.png');
+        return require('../../images/types/Pokemon_Type_Icon_Dark.png');
       case 'dragon':
-        return require('../../images/Pokemon_Type_Icon_Dragon.png');
+        return require('../../images/types/Pokemon_Type_Icon_Dragon.png');
       case 'electric':
-        return require('../../images/Pokemon_Type_Icon_Electric.png');
+        return require('../../images/types/Pokemon_Type_Icon_Electric.png');
       case 'fairy':
-        return require('../../images/Pokemon_Type_Icon_Fairy.png');
+        return require('../../images/types/Pokemon_Type_Icon_Fairy.png');
       case 'fighting':
-        return require('../../images/Pokemon_Type_Icon_Fighting.png');
+        return require('../../images/types/Pokemon_Type_Icon_Fighting.png');
       case 'fire':
-        return require('../../images/Pokemon_Type_Icon_Fire.png');
+        return require('../../images/types/Pokemon_Type_Icon_Fire.png');
       case 'flying':
-        return require('../../images/Pokemon_Type_Icon_Flying.png');
+        return require('../../images/types/Pokemon_Type_Icon_Flying.png');
       case 'ghost':
-        return require('../../images/Pokemon_Type_Icon_Ghost.png');
+        return require('../../images/types/Pokemon_Type_Icon_Ghost.png');
       case 'grass':
-        return require('../../images/Pokemon_Type_Icon_Grass.png');
+        return require('../../images/types/Pokemon_Type_Icon_Grass.png');
       case 'ground':
-        return require('../../images/Pokemon_Type_Icon_Ground.png');
+        return require('../../images/types/Pokemon_Type_Icon_Ground.png');
       case 'ice':
-        return require('../../images/Pokemon_Type_Icon_Ice.png');
+        return require('../../images/types/Pokemon_Type_Icon_Ice.png');
       case 'normal':
-        return require('../../images/Pokemon_Type_Icon_Normal.png');
+        return require('../../images/types/Pokemon_Type_Icon_Normal.png');
       case 'poison':
-        return require('../../images/Pokemon_Type_Icon_Poison.png');
+        return require('../../images/types/Pokemon_Type_Icon_Poison.png');
       case 'psychic':
-        return require('../../images/Pokemon_Type_Icon_Psychic.png');
+        return require('../../images/types/Pokemon_Type_Icon_Psychic.png');
       case 'rock':
-        return require('../../images/Pokemon_Type_Icon_Rock.png');
+        return require('../../images/types/Pokemon_Type_Icon_Rock.png');
       case 'steel':
-        return require('../../images/Pokemon_Type_Icon_Steel.png');
+        return require('../../images/types/Pokemon_Type_Icon_Steel.png');
       case 'water':
-        return require('../../images/Pokemon_Type_Icon_Water.png');
+        return require('../../images/types/Pokemon_Type_Icon_Water.png');
       default:
         return 'missing type';
     }
